@@ -1,0 +1,50 @@
+http://localhost:8080/api/product/add - добавить товар
+http://localhost:8080/api/user/add - добавить пользователя
+http://localhost:8080/api/comment/add - добавить коммент
+http://localhost:8080/api/category/add - добавить категорию
+http://localhost:8080/api/wallet/add - добавить кошелек
+
+http://localhost:8080/api/product/delete - удалить товар
+http://localhost:8080/api/user/delete - удалить пользователя
+http://localhost:8080/api/comment/delete - удалить коммент
+http://localhost:8080/api/category/delete - удалить категорию
+http://localhost:8080/api/wallet/delete - удалить кошелек
+
+http://localhost:8080/api/product/update - обновить товар
+http://localhost:8080/api/user/update - обновить пользователя
+http://localhost:8080/api/comment/update - обновить коммент
+http://localhost:8080/api/category/update - обновить категорию
+http://localhost:8080/api/wallet/update - обновить кошелек
+
+http://localhost:8080/api/product/deleteAll - удалить весь товар
+http://localhost:8080/api/user/deleteAll - удалить всех  пользователей
+http://localhost:8080/api/comment/deleteAll - удалить все комменты
+http://localhost:8080/api/category/deleteAll - удалить все категории
+http://localhost:8080/api/wallet/deleteAll - удалить все кошельки
+
+http://localhost:8080/api/product/deleteById - удалить товар по айди
+http://localhost:8080/api/user/deleteById - удалить пользователя по айди
+http://localhost:8080/api/comment/deleteById - удалить коммент по айди
+http://localhost:8080/api/category/deleteById - удалить категориию по айди
+http://localhost:8080/api/wallet/deleteById - удалить кошелек по айди
+
+http://localhost:8080/api/addToWish - добавить продукт  в корзину
+http://localhost:8080/api/commentTo - добавить коммент к продукту
+http://localhost:8080/api/api/order - заказать продукт
+
+
+добавить прибавку к цене при выборе метода покупки (при котором продавец едет к пользователю)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
