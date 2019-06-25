@@ -7,6 +7,7 @@
 //import Ordermanager.Testing.repository.CommentRepository;
 //import Ordermanager.Testing.repository.ProductRepository;
 //import Ordermanager.Testing.repository.UserRepository;
+//import Ordermanager.Testing.utils.Helper;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Service;
 //
@@ -23,7 +24,8 @@
 //    @Autowired
 //    private CommentRepository commentRepository;
 //
-//
+//@Autowired
+//private Helper helper;
 //
 //
 //    @Override
@@ -32,14 +34,19 @@
 //        Product product=getProduct(commentToProduct.getProductId());
 //        String text=commentToProduct.getComment();
 //        User user = getUser(commentToProduct.getUserId());
-//        List<Comments>comments = product.getComments();
-//        comments.add(text);
+//        Comment c = new Comment();
+//        c.setUser(user);
+//        c.setText(commentToProduct.getComment());
+//        c.setProduct(product);
+//        List<Comment>comments = product.getComments();
+//        comments.add(c);
+//        productRepository.save(product);
 //        return product;
 //    }
 //
 //private User getUser(Integer userId){
-//        User user = userRepository.findById(userId).get();
-//
+//        User user = userRepository.findById(helper.getUser().getId()).get();
+//return user;
 //}
 ////    private Product getProduct(Integer productId,Comment comment) {
 ////        Product product = productRepository.findById(productId).get();

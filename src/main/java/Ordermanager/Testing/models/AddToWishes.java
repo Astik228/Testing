@@ -1,18 +1,12 @@
 package Ordermanager.Testing.models;
 
 public class AddToWishes {
-   private Integer userId;
+  // private Integer userId;
    private Integer productId;
    private Integer amountOfProducts;
 
 
-    public Integer getUserId() {
-        return userId;
-    }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
     public Integer getProductId() {
         return productId;

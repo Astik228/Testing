@@ -23,27 +23,18 @@ public class OrderProduct {
     private Integer amountOfProducts;
     @Enumerated(EnumType.ORDINAL)
     private MethodsOfPay methodsOfPay;
-    @Enumerated(EnumType.ORDINAL)
-    private OrderStatuses orderStatuses;
+//    @Enumerated(EnumType.ORDINAL)
+//    private OrderStatuses orderStatuses;
 
 
     public OrderProduct() {
     }
 
-    public OrderProduct(User user, Product product, Integer amountOfProducts, MethodsOfPay methodsOfPay, OrderStatuses orderStatuses) {
+    public OrderProduct(User user, Product product, Integer amountOfProducts, MethodsOfPay methodsOfPay) {
         this.user = user;
         this.product = product;
         this.amountOfProducts = amountOfProducts;
         this.methodsOfPay = methodsOfPay;
-        this.orderStatuses = orderStatuses;
-    }
-
-    public OrderStatuses getOrderStatuses() {
-        return orderStatuses;
-    }
-
-    public void setOrderStatuses(OrderStatuses orderStatuses) {
-        this.orderStatuses = orderStatuses;
     }
 
     public MethodsOfPay getMethodsOfPay() {

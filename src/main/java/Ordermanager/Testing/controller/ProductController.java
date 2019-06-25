@@ -2,6 +2,7 @@ package Ordermanager.Testing.controller;
 
 import Ordermanager.Testing.entities.Product;
 
+import Ordermanager.Testing.repository.ProductRepository;
 import Ordermanager.Testing.service.ProductService;
 import Ordermanager.Testing.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,9 @@ import java.util.List;
 @RequestMapping("api/product")
 public class ProductController {
     @Autowired
-    ProductService productService;
-
+    private ProductService productService;
+    @Autowired
+    private ProductRepository productRepository;
 
 
     @DeleteMapping("/delete/{id}")
@@ -52,32 +54,7 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    @GetMapping("/getByCategory/{category}")
-    public Response getProductByCategory(@PathVariable String category) {
-        try{
-            new Response("Product by Category:",true,productService.findAllByCategoryTitle(category));
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-      return   new Response("ERROR",false,null);
-    }  @GetMapping("/getFirstByTitle/{title}")
-    public Response getFirstByTitle(@PathVariable String title) {
-        try{
-            new Response("Product by title:",true,productService.getFirstByTitle(title));
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-      return   new Response("ERROR",false,null);
-    }
-//    @GetMapping("/getByName/{name}")
-//    public Response getProductByName(@PathVariable String name) {
-//        try{
-//            new Response("Product by name:",true,productService.findByName(name));
-//        }catch (Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//      return   new Response("ERROR",false,null);
-//    }
+
 
     @GetMapping("/getAll")
     public List<Product> getProducts() {
@@ -105,7 +82,6 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
 
 
 }

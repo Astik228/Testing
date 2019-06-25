@@ -15,12 +15,11 @@ import java.util.List;
 public class CommentServiceImpl implements CommentService {
 
     @Autowired
-    CommentRepository commentRepository;
+    private UserRepository userRepository;
     @Autowired
-    UserRepository userRepository;
-
+    private ProductRepository productRepository;
     @Autowired
-    ProductRepository productRepository;
+    private CommentRepository commentRepository;
 
     @Override
     public List<Comment> getAllComments() {
@@ -33,39 +32,19 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Product save(Comment comment) {
-        User user1 = userRepository.findById(comment.getUser().getId()).get();
-        Product product1 = productRepository.findById(comment.getProduct().getId()).get();
-        List<Comment>comments = product1.getComments();
+    public Comment save(Comment comment) {
+        Comment c = commentRepository.save(comment);
+        return c;
+    }
 
-        comment.setProduct(product1);
-
-        comment.setUser(user1);
-
+    public Product getProduct(Comment comment) {
+        Product product = productRepository.findById(comment.getProduct().getId()).get();
+        List<Comment> comments = product.getComments();
         comments.add(comment);
-
-        product1.setComments(comments);
-
-        commentRepository.save(comment);
-        productRepository.save(product1);
-        userRepository.save(user1);
-        return  comment.getProduct();
-    }
-
-
-    public User getUser(Integer userId) {
-        User user1 = userRepository.findById(userId).get();
-        return user1;
-    }
-
-    public Product getProduct(Product product) {
-        Product product1 =productRepository.getOne(product.getId());
-        return  product1;
-    }
-    private Product getProduct(Integer productId) {
-        Product product = productRepository.findById(productId).get();
+        productRepository.save(product);
         return product;
     }
+//Could not beauty
 
     @Override
     public Comment updateComment(Comment comment) {

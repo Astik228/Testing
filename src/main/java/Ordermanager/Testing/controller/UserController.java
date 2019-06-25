@@ -18,15 +18,10 @@ import java.util.List;
 @RequestMapping("api/user")
 public class UserController {
     @Autowired
-    UserService1 userService;
+   private UserService1 userService;
 
 @Autowired
-    AddToWishesService addToWishesService;
-
-//    @Autowired
-//    BuyProductService buyProductService;
-
-
+   private AddToWishesService addToWishesService;
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteUserById(@PathVariable Integer id) {
@@ -91,8 +86,5 @@ public class UserController {
         }
     }
 
-//    @GetMapping("/userProducts/{id}")
-//    public List<Product> getUserProducts(@PathVariable Integer id){
-//    return buyProductService.getProductsByUserId(id);
-//    }
+
 }

@@ -4,7 +4,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "comments_t")
@@ -21,6 +21,7 @@ public class Comment {
     @JoinColumn(name = "product_id")
     private Product product;
 
+
     public Comment() {
     }
 
@@ -28,6 +29,17 @@ public class Comment {
         this.text = text;
         this.user = user;
         this.product = product;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", user=" + user +
+                ", product=" + product +
+                '}';
     }
 
     public Product getProduct() {

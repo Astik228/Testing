@@ -1,21 +1,17 @@
 package Ordermanager.Testing.service;
 
-import Ordermanager.Testing.Exceptions.NotEnoughMoneyException;
 import Ordermanager.Testing.entities.Product;
+import Ordermanager.Testing.entities.Role;
 import Ordermanager.Testing.entities.User;
-import Ordermanager.Testing.entities.Wallet;
-import Ordermanager.Testing.enums.Wallets;
 import Ordermanager.Testing.repository.ProductRepository;
+import Ordermanager.Testing.repository.RoleRepo;
 import Ordermanager.Testing.repository.UserRepository;
 
-import Ordermanager.Testing.repository.WalletRepository;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -26,15 +22,18 @@ public class UserServiceImp1 implements UserService1 {
     private UserRepository userRepository;
     @Autowired
     private ProductRepository productRepository;
-    @Autowired
-    private WalletRepository walletRepository;
 
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private RoleRepo roleRepo;
 
     @Override
     public User saveUser(User user) {
         return userRepository.save(user);
     }
-
+    public User findUserByEmail(String email) {
+        return userRepository.findFirstByEmail(email);
+    }
     @Override
     public void deleteUserById(Integer id) {
         userRepository.deleteById(id);
@@ -43,22 +42,24 @@ public class UserServiceImp1 implements UserService1 {
     @Override
     public User getUserById(Integer id) {
         return userRepository.findById(id).get();
-
     }
-
-
-
-
+    @Override
+    public User registration(User user) {
+        //Role role2 = roleRepo.findAll().stream().filter(n -> n.getRoleName().equals("ROLE_USER")).findFirst().get();
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setActive(1);
+        Role role = roleRepo.getFirstByRoleName("ROLE_USER");
+        user.setRoles(new HashSet<>(Arrays.asList(role)));
+        userRepository.save(user);
+        return user;
+    }
 
     public User getUser(Integer userId) {
         User user = userRepository.findById(userId).get();
         return user;
     }
 
-    public Wallet getWallet(Integer walletId) {
-        Wallet wallet = walletRepository.findById(walletId).get();
-        return wallet;
-    }
+
 
     public Product getProduct(Integer productId) {
         Product product = productRepository.findById(productId).get();
@@ -80,11 +81,7 @@ public class UserServiceImp1 implements UserService1 {
         userRepository.deleteAll();
     }
 
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder() {
-//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-//        return bCryptPasswordEncoder;
-//    }
+
 }
 
     

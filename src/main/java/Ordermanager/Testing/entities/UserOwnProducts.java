@@ -2,47 +2,32 @@ package Ordermanager.Testing.entities;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "buyProduct_t")
-public class BuyProduct {
+@Table(name = "user_products")
+public class UserOwnProducts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User  user;
+    private User user;
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
+    private  Integer amountOfProduct;
 
-    private Integer amountOfProducts;
+   public UserOwnProducts (){}
 
-    public BuyProduct() {
-    }
 
-    public BuyProduct(User user, Product product, Integer amountOfProducts) {
+    public UserOwnProducts(User user, Product product, Integer amountOfProduct) {
         this.user = user;
         this.product = product;
-        this.amountOfProducts = amountOfProducts;
-    }
-
-    @Override
-    public String toString() {
-        return "BuyProduct{" + "id=" + id + ", user=" + user + ", product=" + product + ", amountOfProducts=" + amountOfProducts + '}';
-    }
-
-    public Integer getAmountOfProducts() {
-        return amountOfProducts;
-    }
-
-    public void setAmountOfProducts(Integer amountOfProducts) {
-        this.amountOfProducts = amountOfProducts;
+        this.amountOfProduct = amountOfProduct;
     }
 
     public Integer getId() {
@@ -68,4 +53,13 @@ public class BuyProduct {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    public Integer getAmountOfProduct() {
+        return amountOfProduct;
+    }
+
+    public void setAmountOfProduct(Integer amountOfProduct) {
+        this.amountOfProduct = amountOfProduct;
+    }
+
 }

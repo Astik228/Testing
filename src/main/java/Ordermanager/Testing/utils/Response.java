@@ -11,6 +11,9 @@ public class Response {
         this.object = object;
     }
 
+    public Response() {
+    }
+
     public String getMessage() {
         return message;
     }

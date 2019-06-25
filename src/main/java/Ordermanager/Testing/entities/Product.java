@@ -3,10 +3,12 @@ package Ordermanager.Testing.entities;
 import Ordermanager.Testing.enums.AvailableStatuses;
 import Ordermanager.Testing.enums.Country;
 import Ordermanager.Testing.enums.MethodsOfPay;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -17,47 +19,54 @@ public class Product {
     private Integer id;
 
     @Column(name = "title", nullable = false, unique = false)
+    @NotEmpty(message = "*Please provide tittle")
     private String title;
 
     @Column(name = "price", nullable = false, unique = false)
     private Double price;
    // @OnDelete(action = OnDeleteAction.CASCADE)
     @OneToMany
+    @JsonBackReference
     private List<Comment> comments;
 
-    @Column(name = "country", nullable = false, unique = false)
-    private Country country;
 
-    @Column(name = "available", nullable = false, unique = false)
+    @Column(name = "available", nullable = false)
     private AvailableStatuses availableStatuses;
 
-    @Column(name = "description", nullable = false, unique = false)
+    @Column(name = "description", nullable = false)
+    @NotEmpty(message = "*Please provide description")
     private String description;
 
     @Column(name = "amount", nullable = false, unique = false)
     private Integer amount;
+
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
     @Column(name = "address")
+    @NotEmpty(message = "*Please provide address")
     private String address;
+
+    @Column(name = "phone_number")
+    private String number;
+
 
     public Product() {
     }
 
 
-    public Product(String title, Double price, List<Comment> comments, Country country, AvailableStatuses availableStatuses, String description, Integer amount, Category category) {
+    public Product(@NotEmpty(message = "*Please provide tittle") String title, Double price, List<Comment> comments, AvailableStatuses availableStatuses, @NotEmpty(message = "*Please provide description") String description, Integer amount, Category category, @NotEmpty(message = "*Please provide address") String address, String number) {
         this.title = title;
         this.price = price;
         this.comments = comments;
-        this.country = country;
         this.availableStatuses = availableStatuses;
         this.description = description;
         this.amount = amount;
         this.category = category;
-
+        this.address = address;
+        this.number = number;
     }
 
     @Override
@@ -68,11 +77,19 @@ public class Product {
                 "\n price=" + price +
                 "\n address="+address+
                 "\n comments=" + comments +
-                "\n country=" + country +
                 "\n availableStatuses=" + availableStatuses +
                 "\n description='" + description +
                 "\n amount=" + amount +
-                "\n category=" + category;
+                "\n category=" + category+
+                "\n phone number="+number;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public Category getCategory() {
@@ -139,13 +156,7 @@ public class Product {
         this.availableStatuses = availableStatuses;
     }
 
-    public Country getCountry() {
-        return country;
-    }
 
-    public void setCountry(Country country) {
-        this.country = country;
-    }
 
     public String getDescription() {
         return description;

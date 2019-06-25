@@ -1,9 +1,6 @@
 package Ordermanager.Testing.service;
 
-import Ordermanager.Testing.entities.Category;
 import Ordermanager.Testing.entities.Product;
-import Ordermanager.Testing.models.JsonMessage;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -18,11 +15,9 @@ public interface ProductService {
 
     void deleteAll();
 
+    Product getByTitle(String title);
+
     void deleteProductById(Integer id);
 
-    //List<Product>findByCategory(String category);
-   // List<Product>findByName(String name);
-    List<Product>findAllByCategoryTitle(String category);
-    Product getFirstByTitle(String title);
 
 }

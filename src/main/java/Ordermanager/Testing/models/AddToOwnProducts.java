@@ -1,22 +1,10 @@
 package Ordermanager.Testing.models;
 
-import Ordermanager.Testing.enums.MethodsOfPay;
-import Ordermanager.Testing.enums.OrderStatuses;
-
-public class ToOrderProduct {
+public class AddToOwnProducts {
+  //  private Integer userId;
     private Integer productId;
     private Integer amountOfProducts;
-    private MethodsOfPay methodsOfPay;
 
-
-
-    public MethodsOfPay getMethodsOfPay() {
-        return methodsOfPay;
-    }
-
-    public void setMethodsOfPay(MethodsOfPay methodsOfPay) {
-        this.methodsOfPay = methodsOfPay;
-    }
 
 
     public Integer getProductId() {

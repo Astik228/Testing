@@ -21,12 +21,17 @@ public class CommentController {
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public Response saveComment(@RequestBody Comment c) {
+        Response response = new Response();
         try {
-            return new Response("Commented",true,commentService.save(c));
+            response.setObject(commentService.save(c));
+            response.setMessage("Commented");
+            response.setSuccess(true);
         } catch (Exception e) {
             System.out.println(e.toString());
-            return new Response("Not commented",false,null);
+            response.setMessage("Not commented");
+            response.setSuccess(false);
         }
+        return response;
     }
 
     @GetMapping("/getAll")

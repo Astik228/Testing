@@ -1,12 +1,8 @@
 package Ordermanager.Testing.service;
 
-import Ordermanager.Testing.entities.Category;
 import Ordermanager.Testing.entities.Product;
-import Ordermanager.Testing.models.JsonMessage;
 import Ordermanager.Testing.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,6 +28,9 @@ public class ProductServiceImpl implements ProductService {
       return   productRepository.findById(id).get();
 
     }
+    public Product getByTitle(String title){
+        return productRepository.getFirstByTitle(title);
+    }
 
     @Override
     public List<Product> getAllProducts() {
@@ -47,12 +46,5 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteAll();
     }
 
-    @Override
-    public List<Product>findAllByCategoryTitle(String category) {
-        return productRepository.findAllByCategoryTitle(category);
-    }
-    @Override
-    public Product getFirstByTitle(String title){
-        return productRepository.getFirstByTitle(title);
-    }
+
 }

@@ -7,7 +7,7 @@ import Ordermanager.Testing.entities.User;
 import java.util.List;
 
 public interface CommentService {
-    Product save(Comment comment);
+    Comment save(Comment comment);
 
     Comment getCommentById(Integer id);
 
